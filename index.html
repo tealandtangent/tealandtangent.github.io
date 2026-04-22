@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teal & Tangent</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0f1e;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .logo {
+      font-size: 2em;
+      font-weight: 700;
+      color: #00d4ff;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .tagline {
+      font-size: 1em;
+      color: #8899aa;
+      margin-bottom: 60px;
+    }
+    .apps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .app-card {
+      background: #141929;
+      border: 1px solid #1e2a3a;
+      border-radius: 16px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+    }
+    .app-card:hover { border-color: #00d4ff; }
+    .app-name {
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .app-desc {
+      font-size: 0.9em;
+      color: #8899aa;
+      margin-bottom: 12px;
+    }
+    .app-links {
+      display: flex;
+      gap: 16px;
+    }
+    .app-links a {
+      font-size: 0.8em;
+      color: #00d4ff;
+      text-decoration: none;
+    }
+    .app-links a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 60px;
+      font-size: 0.75em;
+      color: #445566;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">Teal & Tangent</div>
+  <div class="tagline">Independent apps built with care.</div>
+
+  <div class="apps">
+    <div class="app-card">
+      <div class="app-name">TradeRush</div>
+      <div class="app-desc">
+        The daily trading game. Real charts. Zero risk.
+        Trade fast. Think faster.
+      </div>
+      <div class="app-links">
+        <a href="https://apps.apple.com" target="_blank">App Store</a>
+        <a href="/traderush-support">Support & Privacy</a>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-name">ConTXT</div>
+      <div class="app-desc">
+        Share your contact in context.
+      </div>
+      <div class="app-links">
+        <a href="/contxt-support">Support & Privacy</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Teal & Tangent Ventures LLC. All rights reserved.</p>
+    <p style="margin-top: 8px;">
+      Disclosures: Nothing on this site is an offer to sell or a 
+      solicitation to buy any security or property. Information is 
+      educational and general in nature. Past performance is not 
+      indicative of future results.
+    </p>
+  </footer>
+</body>
+</html>
