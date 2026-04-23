@@ -3,113 +3,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teal & Tangent</title>
+  <title>Teal & Tangent Ventures</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0f1e;
-      color: #ffffff;
-      min-height: 100vh;
+      background: #f9f7f4;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 3px solid #c07a3a;
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-text {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
     }
-    .logo {
+    .logo-name {
       font-size: 2em;
       font-weight: 700;
-      color: #00d4ff;
+      color: #2a9d8f;
+    }
+    .logo-sub {
+      font-size: 1em;
+      color: #c07a3a;
+      font-weight: 500;
       letter-spacing: 0.05em;
+    }
+    .logo-icon {
+      font-size: 2.5em;
+      font-weight: 900;
+      color: #2a9d8f;
+      line-height: 1;
+    }
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #2a9d8f;
+      font-weight: 500;
+      font-size: 0.95em;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    /* About */
+    .about {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      border-bottom: 2px solid #c07a3a;
+      padding-bottom: 60px;
+    }
+    .about img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .about-text h2 {
+      font-size: 1.8em;
+      color: #2a9d8f;
+      margin-bottom: 16px;
+    }
+    .about-text p {
+      margin-bottom: 16px;
+      line-height: 1.7;
+      color: #444;
+    }
+    .principles-label {
+      font-weight: 700;
+      color: #c07a3a;
       margin-bottom: 8px;
     }
-    .tagline {
-      font-size: 1em;
-      color: #8899aa;
-      margin-bottom: 60px;
+    .principles-list {
+      list-style: none;
+      padding: 0;
     }
-    .apps {
+    .principles-list li {
+      padding: 4px 0 4px 16px;
+      position: relative;
+      color: #444;
+      line-height: 1.6;
+    }
+    .principles-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: #c07a3a;
+    }
+
+    /* Apps */
+    .apps-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 40px;
+    }
+    .apps-section h2 {
+      font-size: 1.8em;
+      color: #2a9d8f;
+      margin-bottom: 32px;
+    }
+    .apps-grid {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      max-width: 400px;
+      gap: 24px;
+      flex-wrap: wrap;
     }
     .app-card {
-      background: #141929;
-      border: 1px solid #1e2a3a;
-      border-radius: 16px;
-      padding: 24px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: 4px solid #2a9d8f;
+      border-radius: 8px;
+      padding: 28px;
+      flex: 1;
+      min-width: 260px;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s;
     }
-    .app-card:hover { border-color: #00d4ff; }
+    .app-card:hover { border-top-color: #c07a3a; }
     .app-name {
-      font-size: 1.2em;
+      font-size: 1.3em;
       font-weight: 700;
-      margin-bottom: 4px;
+      color: #2a9d8f;
+      margin-bottom: 8px;
     }
     .app-desc {
-      font-size: 0.9em;
-      color: #8899aa;
-      margin-bottom: 12px;
+      font-size: 0.95em;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 16px;
     }
     .app-links {
       display: flex;
       gap: 16px;
+      flex-wrap: wrap;
     }
     .app-links a {
-      font-size: 0.8em;
-      color: #00d4ff;
+      font-size: 0.85em;
+      color: #c07a3a;
       text-decoration: none;
+      font-weight: 500;
     }
     .app-links a:hover { text-decoration: underline; }
+
+    /* Contact */
+    .contact-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 40px 80px;
+    }
+    .contact-section h2 {
+      font-size: 1.8em;
+      color: #2a9d8f;
+      margin-bottom: 24px;
+    }
+    .contact-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 500px;
+    }
+    .contact-card p {
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .contact-card a {
+      color: #2a9d8f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* Footer */
     footer {
-      margin-top: 60px;
-      font-size: 0.75em;
-      color: #445566;
+      background: #fff;
+      border-top: 3px solid #c07a3a;
+      padding: 24px 40px;
       text-align: center;
+      font-size: 0.78em;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .about { flex-direction: column; }
+      .about img { width: 100%; height: 240px; }
+      header { flex-direction: column; gap: 16px; }
+      nav a { margin-left: 12px; }
     }
   </style>
 </head>
 <body>
-  <div class="logo">Teal & Tangent</div>
-  <div class="tagline">Independent apps built with care.</div>
 
-  <div class="apps">
-    <div class="app-card">
-      <div class="app-name">TradeRush</div>
-      <div class="app-desc">
-        The daily trading game. Real charts. Zero risk.
-        Trade fast. Think faster.
-      </div>
-      <div class="app-links">
-        <a href="https://apps.apple.com" target="_blank">App Store</a>
-        <a href="/traderush-support">Support & Privacy</a>
+  <header>
+    <div class="logo-area">
+      <div class="logo-text">
+        <div class="logo-name">Teal & Tangent</div>
+        <div class="logo-sub">Ventures</div>
       </div>
     </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#apps">Apps</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="app-card">
-      <div class="app-name">ConTXT</div>
-      <div class="app-desc">
-        Share your contact in context.
+  <section class="about" id="about">
+    <img
+      src="https://lh3.googleusercontent.com/sitesv/AA5AbUDGdZZjVa3ex2IjiuULwGlrI-CgM1h-LQFXqT-S-tlIb_qwEEukeSKU_rgeQqLQMPQkabWqtcPFSstyn0D0RYQx5Tl0TzejgjZYxwXCCyaOkJJZ3HmfebU9nJ67vr0LbJj0ZNCY7ty-9D3vBqmaUpIbeKw3PS-hIF1mDliB-_lZOVEJIZfX0lxxfPs=w400"
+      alt="Nirav Suraiya"
+    />
+    <div class="about-text">
+      <h2>About</h2>
+      <p><strong>Teal & Tangent</strong> is a family holding company
+      led by Nirav Suraiya. We operate with a simple mandate: build
+      resilient income, protect downside, and explore new ideas. We
+      prefer small, repeatable advantages over big, fragile bets. We
+      measure success in cash flow, financial freedom, and quality
+      of life.</p>
+      <p class="principles-label">Operating Principles:</p>
+      <ul class="principles-list">
+        <li><strong>Safety First:</strong> protect capital and attention</li>
+        <li><strong>Simplicity Scales:</strong> fewer moving parts, tighter feedback loops</li>
+        <li><strong>Write It Down:</strong> rules beat vibes</li>
+        <li><strong>Family Aligned:</strong> all decisions must support the life we truly want</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="apps-section" id="apps">
+    <h2>Our Apps</h2>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-name">TradeRush</div>
+        <div class="app-desc">The daily trading game. Real charts.
+        Zero risk. Trade fast. Think faster. A 60-second competitive
+        chart trading game focused on pattern recognition and
+        emotional control.</div>
+        <div class="app-links">
+          <a href="https://apps.apple.com" target="_blank">↗ App Store</a>
+          <a href="/traderush-support">Support & Privacy</a>
+        </div>
       </div>
-      <div class="app-links">
-        <a href="/contxt-support">Support & Privacy</a>
+      <div class="app-card">
+        <div class="app-name">ConTXT Card</div>
+        <div class="app-desc">A simple, private, and secure digital
+        business card app. All your contact data stays on your
+        device — nothing shared, nothing stored on servers.</div>
+        <div class="app-links">
+          <a href="/contxt-support">Support & Privacy</a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-card">
+      <p>For support, questions, or general inquiries, reach out
+      directly by email. We read every message.</p>
+      <p>
+        <a href="mailto:tealandtangent@gmail.com">
+          tealandtangent@gmail.com
+        </a>
+      </p>
+    </div>
+  </section>
 
   <footer>
     <p>© 2026 Teal & Tangent Ventures LLC. All rights reserved.</p>
-    <p style="margin-top: 8px;">
-      Disclosures: Nothing on this site is an offer to sell or a 
-      solicitation to buy any security or property. Information is 
-      educational and general in nature. Past performance is not 
-      indicative of future results.
-    </p>
+    <p>Disclosures: Nothing on this site is an offer to sell or a
+    solicitation to buy any security or property. Information is
+    educational and general in nature. Options involve risk and are
+    not suitable for every investor. Past performance is not
+    indicative of future results.</p>
   </footer>
+
 </body>
 </html>
