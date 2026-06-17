@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capture by Linkless — Proximity Messaging for Destination Venues</title>
+  <meta name="description" content="Keep your guests on-property and spending longer. Capture reaches guests at the exact moment they are deciding where to go next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0D0D0F;
+      --bg-card:  #1A1A1F;
+      --border:   #2C2C34;
+      --gold:     #C8A96E;
+      --gold-dim: rgba(200, 169, 110, 0.15);
+      --text:     #F5F0E8;
+      --muted:    rgba(245, 240, 232, 0.5);
+      --serif:    'DM Serif Display', Georgia, serif;
+      --sans:     'Inter', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+
+    .nav-wordmark {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-wordmark span { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 7px 18px;
+      border: 1px solid rgba(200, 169, 110, 0.4);
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 2rem 6rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pulse-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      width: 600px;
+      height: 600px;
+    }
+
+    .pulse-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.22;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+
+    .pulse-ring:nth-child(2) { width: 120px; height: 120px; animation: pulse-expand 3s ease-out infinite; }
+    .pulse-ring:nth-child(3) { width: 240px; height: 240px; animation: pulse-expand 3s ease-out 1s infinite; }
+    .pulse-ring:nth-child(4) { width: 400px; height: 400px; animation: pulse-expand 3s ease-out 2s infinite; }
+
+    @keyframes pulse-expand {
+      0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0.09; }
+      60%  { opacity: 0.06; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-ring { animation: none; }
+      .pulse-dot  { opacity: 0.12; }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+    }
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 5.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: #0D0D0F;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .rule {
+      border: none;
+      border-top: 1px solid rgba(200, 169, 110, 0.18);
+      width: 100%;
+    }
+
+    .section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .section-intro {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+
+    .problem-setup {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .problem-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: stretch;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-item:first-child { border-top: 1px solid var(--border); }
+
+    .problem-bar {
+      width: 2px;
+      background: rgba(200, 169, 110, 0.3);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .problem-item p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .problem-item p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .problem-closer {
+      margin-top: 2rem;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      padding-top: 3px;
+    }
+
+    .step h3 {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+
+    .faq-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      text-align: left;
+      gap: 1rem;
+    }
+
+    .faq-trigger:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .faq-q {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-body { display: none; padding-bottom: 1.25rem; }
+    .faq-item.open .faq-body { display: block; }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .logos-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .logos-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .logo-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      max-width: 680px;
+      margin: 0 auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .logo-scroll::-webkit-scrollbar { display: none; }
+
+    .logo-pill {
+      flex-shrink: 0;
+      padding: 7px 16px;
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-card);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .logos-disclaimer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 1.25rem;
+      opacity: 0.5;
+    }
+
+    .cta-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5.5rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .cta-section h2 { margin-bottom: 0.6rem; }
+
+    .cta-section > p {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 360px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form input,
+    .form select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-card);
+      font-size: 14px;
+      color: var(--text);
+      font-family: var(--sans);
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .form input:focus,
+    .form select:focus { border-color: rgba(200, 169, 110, 0.6); }
+
+    .form input::placeholder { color: rgba(245, 240, 232, 0.25); }
+
+    .form select { color: rgba(245, 240, 232, 0.4); cursor: pointer; }
+    .form select.selected { color: var(--text); }
+
+    .form .btn-primary { width: 100%; text-align: center; padding: 13px; font-size: 14px; }
+
+    .form-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.25rem;
+      opacity: 0.6;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p { font-size: 11px; color: var(--muted); opacity: 0.45; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 4rem; }
+      .section { padding: 3.5rem 1.25rem; }
+      .cta-section { padding: 3.5rem 1.25rem 4rem; }
+      .logos-section { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-wordmark">Capture <span>by Teal & Tangent</span></span>
+    <a href="#contact" class="nav-cta">Book a demo</a>
+  </nav>
+
+  <section class="hero">
+    <div class="pulse-wrap" aria-hidden="true">
+      <div class="pulse-dot"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring"></div>
+    </div>
+    <div class="hero-inner">
+      <p class="eyebrow">Proximity messaging for destination venues</p>
+      <h1>Keep your guests on-property and spending longer</h1>
+      <p class="hero-sub">Capture reaches guests at the exact moment they are deciding where to go next, before they walk out the door.</p>
+      <a href="#contact" class="btn-primary">Book a demo</a>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="section">
+    <p class="eyebrow">The problem</p>
+    <h2>Your guests are walking off your property to spend money somewhere else</h2>
+    <p class="problem-setup">On-property restaurants and services lose guests to outside options every day. Not because guests dislike them. Because no one made the case at the right moment.</p>
+    <div class="problem-list">
+      <div class="problem-item">
+        <div class="problem-bar"></div>
+        <p>A guest assumes your steakhouse is too expensive and heads off-property for dinner. They never looked at the menu. <strong>A targeted offer at the right moment could have changed that decision and kept their spend on your property for the rest of the night.</strong></p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-bar"></div>
+        <p>Push notifications reach your whole guest list, including guests who already have plans, guests across the property, and guests who checked out yesterday. <strong>The message gets ignored. Over time, so do all your notifications.</strong></p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-bar"></div>
+        <p>Solutions that do target by proximity require guests to download a separate app. <strong>They will not. You are back to square one.</strong></p>
+      </div>
+    </div>
+    <p class="problem-closer">The moment a guest is nearby and still deciding is the only moment that matters. Capture owns that moment.</p>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="section">
+    <p class="eyebrow">How it works</p>
+    <h2>Three steps to capturing the spend that is already on your property</h2>
+    <p class="section-intro">Capture embeds in the app your guests already have. You control who participates and set the guardrails. Your on-property businesses handle the rest.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <h3>Embed into your existing venue app</h3>
+          <p>Capture is a drop-in SDK. One integration, and every opted-in guest is instantly reachable by proximity. No new app for guests to download. No new product for your team to maintain.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <h3>You decide which businesses participate</h3>
+          <p>You decide which on-property businesses can send offers and define the rules. Each business manages their own offers within the boundaries you set. You stay in control of the guest experience at all times.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <h3>The right guest gets the right offer at the right moment</h3>
+          <p>When a guest is physically near a participating business, they receive a relevant offer at the exact moment impulse works in your favor. Not a blast to your whole list. A nudge to the right guest at the right moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="section">
+    <p class="eyebrow">FAQ</p>
+    <h2>Common questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Does this require guests to download a new app?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">No. Capture embeds directly into your existing venue app. Guests who already have your app are instantly eligible. No new download required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Does the venue control which businesses participate?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">Yes. You set the guardrails and decide which on-property businesses can send offers. Each business operates within the rules you define.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What if our venue has poor indoor signal?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">That is exactly where Capture works best. It runs on Bluetooth, not GPS or cell signal, so it performs reliably in dense indoor environments like casino floors and resort lobbies.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Do guests have to opt in?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">Yes. Offers only reach guests who have opted in through your existing app. No cold messaging, ever.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Will guests find this intrusive?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">Proximity plus opt-in means the offer only fires when the guest is nearby and already in a receptive state. A well-timed relevant offer in a relaxed environment reads as good service, not spam. You control frequency caps at the venue level.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What venues is this built for?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">Casinos, resorts, stadiums, and malls. Any venue with an existing app, opted-in guests, and multiple on-property businesses competing for foot traffic.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Why not build this ourselves?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body" role="region">
+          <p class="faq-a">Bluetooth proximity infrastructure is complex to build, calibrate, and maintain at scale. Capture is built on Linkless, our proprietary proximity layer, delivered as a drop-in SDK with a management dashboard. Your team stays focused on the guest experience. We own the technology underneath.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="logos-section">
+    <p class="logos-label">Built for venues like these</p>
+    <div class="logo-scroll">
+      <div class="logo-pill">MGM Resorts</div>
+      <div class="logo-pill">Caesars Entertainment</div>
+      <div class="logo-pill">Wynn Las Vegas</div>
+      <div class="logo-pill">Bellagio</div>
+      <div class="logo-pill">Hard Rock</div>
+      <div class="logo-pill">Marriott</div>
+      <div class="logo-pill">Hilton</div>
+      <div class="logo-pill">Simon Malls</div>
+      <div class="logo-pill">Mohegan Sun</div>
+      <div class="logo-pill">Foxwoods</div>
+    </div>
+    <p class="logos-disclaimer">Not affiliated with or endorsed by any of the above brands.</p>
+  </div>
+
+  <section class="cta-section" id="contact">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Let's talk</h2>
+    <p>Tell us about your property and we will show you how Capture fits.</p>
+    <form class="form" action="https://formspree.io/f/mlgkknql" method="POST">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Work email" required />
+      <select name="venue_type" id="venue-select" required>
+        <option value="" disabled selected>Venue type</option>
+        <option value="casino">Casino</option>
+        <option value="resort">Resort</option>
+        <option value="stadium">Stadium</option>
+        <option value="mall">Mall</option>
+        <option value="other">Other</option>
+      </select>
+      <button type="submit" class="btn-primary">Request early access</button>
+      <p class="form-note">No sales pressure. We read every message.</p>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Teal &amp; Tangent Ventures LLC. All rights reserved. &nbsp;&middot;&nbsp; Built on Linkless technology.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    var sel = document.getElementById('venue-select');
+    if (sel) {
+      sel.addEventListener('change', function() {
+        sel.classList.add('selected');
+      });
+    }
+  </script>
+
+</body>
+</html>
