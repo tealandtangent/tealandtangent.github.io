@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Capture — Proximity Messaging for Destination Venues</title>
+  <title>Capture by Linkless — Proximity Messaging for Destination Venues</title>
   <meta name="description" content="Keep your guests on-property and spending longer. Capture reaches guests at the exact moment they are deciding where to go next." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -455,6 +455,51 @@
       opacity: 0.6;
     }
 
+    .outcome-section {
+      border-top: 1px solid var(--border);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .outcome-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .outcome-headline {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .outcome-item {
+      padding: 16px 20px;
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-card);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 480px) {
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome-section { padding: 3.5rem 1.25rem; }
+    }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 1.5rem 2rem;
@@ -475,7 +520,7 @@
 <body>
 
   <nav>
-    <span class="nav-wordmark">Capture <span>by Teal & Tangent</span></span>
+    <span class="nav-wordmark">Capture <span>by Linkless</span></span>
     <a href="#contact" class="nav-cta">Book a demo</a>
   </nav>
 
@@ -621,7 +666,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-body" role="region">
-          <p class="faq-a">Bluetooth proximity infrastructure is complex to build, calibrate, and maintain at scale. Capture is built on Linkless, our proprietary proximity layer, delivered as a drop-in SDK with a management dashboard. Your team stays focused on the guest experience. We own the technology underneath.</p>
+          <p class="faq-a">Bluetooth proximity infrastructure is complex to build, calibrate, and maintain at scale. Capture is a drop-in SDK with a management dashboard. Your team stays focused on the guest experience. We own the proximity layer.</p>
         </div>
       </div>
 
@@ -644,6 +689,18 @@
     </div>
     <p class="logos-disclaimer">Not affiliated with or endorsed by any of the above brands.</p>
   </div>
+
+  <section class="outcome-section">
+    <div class="outcome-inner">
+      <h2 class="outcome-headline">Turn walk-by traffic into revenue</h2>
+      <div class="outcome-grid">
+        <div class="outcome-item">Fill empty restaurant tables</div>
+        <div class="outcome-item">Increase bar and lounge traffic</div>
+        <div class="outcome-item">Promote retail and spa offers</div>
+        <div class="outcome-item">Drive same-day bookings</div>
+      </div>
+    </div>
+  </section>
 
   <section class="cta-section" id="contact">
     <p class="eyebrow">Get in touch</p>
