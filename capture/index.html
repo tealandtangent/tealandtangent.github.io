@@ -354,7 +354,6 @@
       border-bottom: 1px solid var(--border);
       padding: 3rem 2rem;
     }
-
     .logos-label {
       text-align: center;
       font-size: 11px;
@@ -363,39 +362,28 @@
       color: var(--muted);
       margin-bottom: 1.75rem;
     }
-
-    .logo-scroll {
+    .category-icons {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-      max-width: 680px;
+      justify-content: center;
+      gap: 3rem;
+      max-width: 480px;
       margin: 0 auto;
-      -webkit-overflow-scrolling: touch;
     }
-
-    .logo-scroll::-webkit-scrollbar { display: none; }
-
-    .logo-pill {
-      flex-shrink: 0;
-      padding: 7px 16px;
-      border: 1px solid rgba(200, 169, 110, 0.25);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      background: var(--bg-card);
-      white-space: nowrap;
-      letter-spacing: 0.02em;
+    .category-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
-
-    .logos-disclaimer {
-      text-align: center;
+    .category-icon {
+      font-size: 2rem;
+    }
+    .category-name {
       font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--muted);
-      margin-top: 1.25rem;
-      opacity: 0.5;
+      font-weight: 500;
     }
 
     .cta-section {
@@ -535,7 +523,7 @@
     <div class="hero-inner">
       <p class="eyebrow">Proximity messaging for destination venues</p>
       <h1>Keep your guests on-property and spending longer</h1>
-      <p class="hero-sub">Capture reaches guests at the exact moment they are deciding where to go next, before they walk out the door.</p>
+      <p class="hero-sub">Capture reaches guests at the moment they're deciding where to go next.</p>
       <a href="#contact" class="btn-primary">Book a demo</a>
     </div>
   </section>
@@ -674,22 +662,27 @@
     </div>
   </section>
 
-  <div class="logos-section">
-    <p class="logos-label">Built for venues like these</p>
-    <div class="logo-scroll">
-      <div class="logo-pill">MGM Resorts</div>
-      <div class="logo-pill">Caesars Entertainment</div>
-      <div class="logo-pill">Wynn Las Vegas</div>
-      <div class="logo-pill">Bellagio</div>
-      <div class="logo-pill">Hard Rock</div>
-      <div class="logo-pill">Marriott</div>
-      <div class="logo-pill">Hilton</div>
-      <div class="logo-pill">Simon Malls</div>
-      <div class="logo-pill">Mohegan Sun</div>
-      <div class="logo-pill">Foxwoods</div>
+ <div class="logos-section">
+  <p class="logos-label">Built for destination venues</p>
+  <div class="category-icons">
+    <div class="category-tile">
+      <span class="category-icon">🎰</span>
+      <span class="category-name">Casinos</span>
     </div>
-    <p class="logos-disclaimer">Not affiliated with or endorsed by any of the above brands.</p>
+    <div class="category-tile">
+      <span class="category-icon">🏨</span>
+      <span class="category-name">Resorts</span>
+    </div>
+    <div class="category-tile">
+      <span class="category-icon">🏟️</span>
+      <span class="category-name">Stadiums</span>
+    </div>
+    <div class="category-tile">
+      <span class="category-icon">🛍️</span>
+      <span class="category-name">Malls</span>
+    </div>
   </div>
+</div>
 
   <section class="outcome-section">
     <div class="outcome-inner">
