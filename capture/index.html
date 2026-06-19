@@ -285,6 +285,59 @@
       color: var(--gold);
     }
 
+    .model-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+    }
+    .model-line {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+    .model-line strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .model-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .model-number {
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+    }
+    .model-label {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 360px;
+      line-height: 1.5;
+    }
+    .model-disclaimer {
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-top: 2rem;
+      line-height: 1.5;
+    }
+    .model-source {
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.5;
+      margin-top: 0.75rem;
+    }
+    
     .steps {
       display: flex;
       flex-direction: column;
@@ -587,6 +640,20 @@
 
   <hr class="rule" />
 
+  <section class="section">
+    <p class="eyebrow">The opportunity</p>
+    <h2>Even a small recapture rate adds up fast</h2>
+    <div class="model-box">
+      <p class="model-line">Las Vegas visitors spend an average of <strong>$582</strong> on dining and <strong>$222</strong> on shopping per trip — non-gaming spend that's increasingly up for grabs between on-property and off-property options.<sup>1</sup></p>
+      <div class="model-figure">
+        <span class="model-number">$8,040</span>
+        <span class="model-label">recaptured per 1,000 guest-trips at just a 1% recapture rate</span>
+      </div>
+      <p class="model-disclaimer">Illustrative model based on published Las Vegas visitor spend averages. Actual recapture depends on your property's guest volume, spend mix, and app adoption. Not a performance guarantee.</p>
+    </div>
+    <p class="model-source"><sup>1</sup> LVCVA Annual Visitor Profile, 2025</p>
+  </section>
+  
   <section class="section">
     <p class="eyebrow">How it works</p>
     <h2>Three steps to capturing the spend that is already on your property</h2>
