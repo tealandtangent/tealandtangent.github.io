@@ -81,6 +81,41 @@
       flex-direction: column;
       align-items: center;
     }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      max-width: 1100px;
+      width: 100%;
+      text-align: left;
+    }
+    .hero-inner {
+      max-width: 480px;
+      flex-shrink: 0;
+    }
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      max-width: 360px;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+    }
+    @media (max-width: 860px) {
+      .hero-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-inner {
+        max-width: 580px;
+      }
+    }
 
     .pulse-wrap {
       position: absolute;
@@ -127,12 +162,6 @@
     @media (prefers-reduced-motion: reduce) {
       .pulse-ring { animation: none; }
       .pulse-dot  { opacity: 0.12; }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 580px;
     }
 
     .eyebrow {
@@ -613,19 +642,24 @@
   </nav>
 
   <section class="hero">
-    <div class="pulse-wrap" aria-hidden="true">
-      <div class="pulse-dot"></div>
-      <div class="pulse-ring"></div>
-      <div class="pulse-ring"></div>
-      <div class="pulse-ring"></div>
-    </div>
+  <div class="pulse-wrap" aria-hidden="true">
+    <div class="pulse-dot"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+  </div>
+  <div class="hero-grid">
     <div class="hero-inner">
       <p class="eyebrow">Proximity messaging for destination venues</p>
       <h1>Keep your guests on-property and spending longer</h1>
       <p class="hero-sub">Capture reaches guests at the moment they're deciding where to go next.</p>
       <a href="#contact" class="btn-primary">Book a demo</a>
     </div>
-  </section>
+    <div class="hero-visual">
+      <img src="hero-phone-mockup.png" alt="Phone lock screen showing a notification offering 10% off at a nearby steakhouse" loading="eager">
+    </div>
+  </div>
+</section>
 
   <hr class="rule" />
 
