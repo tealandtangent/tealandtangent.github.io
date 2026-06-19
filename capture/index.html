@@ -337,7 +337,25 @@
       opacity: 0.5;
       margin-top: 0.75rem;
     }
-    
+
+    .model-annual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.4rem;
+      padding: 1.75rem 0;
+    }
+    .model-annual-text {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .model-annual-number {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+    }
     .steps {
       display: flex;
       flex-direction: column;
@@ -649,8 +667,12 @@
         <span class="model-number">$8,040</span>
         <span class="model-label">recaptured per 1,000 guest-trips at just a 1% recapture rate</span>
       </div>
-      <p class="model-disclaimer">Illustrative model based on published Las Vegas visitor spend averages. Actual recapture depends on your property's guest volume, spend mix, and app adoption. Not a performance guarantee.</p>
-    </div>
+      <div class="model-annual">
+        <span class="model-annual-text">At 500,000 guest-trips a year, that's</span>
+        <span class="model-annual-number">$4M+</span>
+        <span class="model-annual-text">in recaptured non-gaming spend</span>
+      </div>
+      <p class="model-disclaimer">Illustrative model based on published Las Vegas visitor spend averages and a generic 500,000 guest-trip annual volume. Actual recapture depends on your property's guest volume, spend mix, and app adoption. Not a performance guarantee.</p>    </div>
     <p class="model-source"><sup>1</sup> LVCVA Annual Visitor Profile, 2025</p>
   </section>
   
