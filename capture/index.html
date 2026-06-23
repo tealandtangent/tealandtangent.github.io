@@ -120,11 +120,21 @@
         max-width: 580px;
       }
     }
+    .hero-h1 {
+      white-space: nowrap;
+    }
     
+    @media (max-width: 860px) {
+      .hero-h1 {
+        white-space: normal;
+      }
+    }
     .mobile-br { display: none; }
-
+    .desktop-br { display: block; }
+    
     @media (max-width: 860px) {
       .mobile-br { display: block; }
+      .desktop-br { display: none; }
     }
 
     .eyebrow {
@@ -609,7 +619,7 @@
   <div class="hero-grid">
     <div class="hero-inner">
       <p class="eyebrow">Proximity messaging for destination venues</p>
-      <h1 class="hero-h1">Keep your guests<br class="mobile-br">on-property and<br>spending longer</h1>      
+      <h1 class="hero-h1">Keep your guests<br class="mobile-br"> on-property <br class="desktop-br">and<br class="mobile-br"> spending longer</h1>      
       <p class="hero-sub">Capture reaches guests at the moment they're deciding where to go next.</p>
       <a href="#contact" class="btn-primary">Book a demo</a>
     </div>
