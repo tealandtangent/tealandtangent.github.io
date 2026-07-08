@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Card — Give your attendees connections that don't fade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14201F;
+    --ink-soft: #3B4A46;
+    --paper: #EFF2EF;
+    --panel: #FFFFFF;
+    --line: #D7DEDA;
+    --teal: #2B6E6B;
+    --teal-deep: #1F5350;
+    --brass: #B8892B;
+    --gap-page: 32px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 var(--gap-page);
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    margin: 0 0 12px 0;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  p { margin: 0; }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  /* ---------- Header ---------- */
+
+  header {
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    gap: 12px;
+  }
+
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .wordmark span { color: var(--teal); }
+
+  nav {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  nav a {
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: var(--teal-deep); }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 64px 0 72px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 4.4vw, 46px);
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-sub {
+    margin-top: 18px;
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px;
+    border-radius: 3px;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--teal-deep);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: #163f3d; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+
+  .btn-secondary:hover { border-color: var(--ink-soft); }
+
+  /* ---------- Card mockup (signature element) ---------- */
+
+  .card-stage {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .id-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 24px 24px 20px;
+    box-shadow: 0 24px 48px -28px rgba(20, 32, 31, 0.35);
+  }
+
+  .id-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .id-card-name {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 600;
+  }
+
+  .id-card-role {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .id-card-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .id-card-divider {
+    border-top: 1px dashed var(--line);
+    margin: 16px 0;
+  }
+
+  .id-card-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .id-card-fields b { color: var(--ink); font-weight: 500; }
+
+  .context-tag {
+    background: #FFFDF6;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brass);
+    padding: 12px 16px;
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    box-shadow: 0 14px 30px -18px rgba(20,32,31,0.25);
+    margin: -18px 0 0 auto;
+    width: 82%;
+    position: relative;
+  }
+
+  .context-tag b { display: block; color: var(--ink); font-size: 12px; margin-bottom: 4px; }
+
+  /* ---------- Problem section ---------- */
+
+  .problem {
+    padding: 56px 0 72px;
+    border-top: 1px solid var(--line);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .problem-item { padding-right: 12px; }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+    color: var(--teal-deep);
+    margin-bottom: 14px;
+  }
+
+  .problem-item h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .problem-item p {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Audience sections ---------- */
+
+  .audience {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .audience.alt { background: var(--panel); }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .audience h2 {
+    font-size: clamp(22px, 2.8vw, 28px);
+    margin-bottom: 14px;
+    max-width: 20ch;
+  }
+
+  .benefit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .benefit-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .benefit-list--flat li { align-items: center; }
+
+  .benefit-icon {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--teal-deep);
+  }
+
+  .benefit-text b {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .benefit-text span {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  .audience .btn { margin-top: 26px; }
+
+  .cta-note {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- Privacy callout ---------- */
+
+  .privacy {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .privacy-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--teal-deep);
+    color: #EFF4F2;
+    padding: 30px 32px;
+    border-radius: 8px;
+  }
+
+  .privacy-card .icon {
+    color: #EFF4F2;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+
+  .privacy-card h3 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .privacy-card p {
+    font-size: 14px;
+    color: #CFE0DC;
+    max-width: 62ch;
+  }
+
+  /* ---------- Organizer/App strip ---------- */
+
+  .org-strip {
+    padding: 0 0 40px;
+  }
+
+  .org-strip-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 26px 32px;
+  }
+
+  .org-strip-text b {
+    display: block;
+    font-size: 15.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .org-strip-text span {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 40px 0;
+  }
+
+  .footer-row .cta-row { margin-top: 0; }
+
+  .footer-contact {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .footer-contact a { color: var(--teal-deep); text-decoration: none; font-weight: 500; }
+
+  /* ---------- Responsive: tablet ---------- */
+
+  @media (max-width: 860px) {
+    .hero-grid, .audience-grid { grid-template-columns: 1fr; }
+    .problem-grid { grid-template-columns: 1fr 1fr; }
+    .card-stage { order: -1; max-width: 340px; }
+    .audience h2 { max-width: none; }
+  }
+
+  /* ---------- Responsive: phone ---------- */
+
+  @media (max-width: 560px) {
+    :root { --gap-page: 20px; }
+    .header-row { padding: 14px 0; }
+    .wordmark { font-size: 18px; }
+    nav { gap: 16px; }
+    nav a { font-size: 13px; }
+    .hero { padding: 40px 0 48px; }
+    .problem, .audience { padding-top: 44px; padding-bottom: 48px; }
+    .problem-grid { grid-template-columns: 1fr; gap: 26px; }
+    .privacy { padding-bottom: 48px; }
+    .privacy-card { padding: 24px; flex-direction: column; }
+    .org-strip-card { padding: 22px; flex-direction: column; align-items: flex-start; }
+    .btn { width: 100%; justify-content: center; }
+    .cta-row { flex-direction: column; }
+    .footer-row .cta-row { flex-direction: row; }
+    .footer-row { flex-direction: column; align-items: flex-start; }
+    .card-stage { max-width: 100%; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal-deep);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <a href="index.html" class="wordmark">Context <span>Card</span></a>
+    <nav>
+      <a href="index.html">The App</a>
+      <a href="#organizers">For Organizers</a>
+      <a href="#attendees">For Your Attendees</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Give your attendees connections that don't fade by next week.</h1>
+      <p class="hero-sub">Built for MBA networking events, alumni mixers, and professional conferences — a contact card that helps attendees remember what they actually talked about.</p>
+      <div class="cta-row">
+        <a href="#organizers" class="btn btn-primary">For Organizers</a>
+        <a href="#attendees" class="btn btn-secondary">For Your Attendees</a>
+      </div>
+    </div>
+    <div class="card-stage">
+      <div class="id-card">
+        <div class="id-card-top">
+          <div>
+            <div class="id-card-name">Maya Chen</div>
+            <div class="id-card-role">2nd Year MBA · Consulting</div>
+          </div>
+          <div class="id-card-mark">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M8 12a4 4 0 0 1 8 0"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </div>
+        </div>
+        <div class="id-card-divider"></div>
+        <div class="id-card-fields">
+          <div><b>Shared:</b> LinkedIn, Email</div>
+          <div><b>Not shared:</b> Phone, Socials</div>
+        </div>
+      </div>
+      <div class="context-tag">
+        <b>Met at: Fall Alumni Mixer</b>
+        Note: Also has a labradoodle named Max!
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="wrap">
+    <p class="eyebrow">The Problem</p>
+    <ul class="problem-grid">
+      <li class="problem-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M8 12a4 4 0 0 1 8 0"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+        <h3>Networking effectiveness is declining</h3>
+        <p>Even as organizers invest more, fewer say their events actually deliver real connections.</p>
+      </li>
+      <li class="problem-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M3 10h18"/></svg>
+        <h3>Cards get lost, requests pile up</h3>
+        <p>Business cards get tossed. LinkedIn requests arrive with no memory of why.</p>
+      </li>
+      <li class="problem-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg>
+        <h3>Attendee memory isn't a system</h3>
+        <p>Relying on people to remember who they met, and why, doesn't scale.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="audience alt" id="organizers">
+  <div class="wrap audience-grid">
+    <div>
+      <p class="eyebrow">For Organizers</p>
+      <h2>Give attendees a reason to say your event was worth it.</h2>
+    </div>
+    <div>
+      <ul class="benefit-list benefit-list--flat">
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>Better networking outcomes reflect well on your event</b></div>
+        </li>
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>Keeps students and alumni connected after they leave the room</b></div>
+        </li>
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>A differentiator attendees actually notice</b></div>
+        </li>
+      </ul>
+      <a href="#" class="btn btn-primary">Request a pilot for your school</a>
+      <p class="cta-note">Free to pilot &middot; Nothing for your team to set up</p>
+    </div>
+  </div>
+</section>
+
+<section class="audience" id="attendees">
+  <div class="wrap audience-grid">
+    <div>
+      <p class="eyebrow">For Your Attendees</p>
+      <h2>Remember why you connected, not just that you did.</h2>
+    </div>
+    <div>
+      <ul class="benefit-list">
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>Choose what to share</b><span>Pick the contact details, per person, in a few taps.</span></div>
+        </li>
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>Note the moment</b><span>Add what you talked about and how much context to include, then tap to send.</span></div>
+        </li>
+        <li>
+          <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="benefit-text"><b>Look back anytime</b><span>Open a contact months later and remember exactly why it mattered.</span></div>
+        </li>
+      </ul>
+      <a href="#" class="btn btn-primary">Download for your event</a>
+    </div>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <div class="privacy-card">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3.5v5c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9v-5L12 3z"/></svg>
+      <div>
+        <h3>Private by design</h3>
+        <p>Everything lives on your device. No servers, no spam, no cold outreach lists. Information only moves when both people tap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+  <div class="org-strip-card">
+      <div class="org-strip-text">
+        <b>Want to see the app itself?</b>
+        <span>See what your attendees will be using.</span>
+      </div>
+      <a href="index.html" class="btn btn-secondary">The App</a>
+    </div>
+  </div>
+  <div class="wrap footer-row">
+    <div class="cta-row">
+      <a href="#organizers" class="btn btn-primary">Request a pilot</a>
+    </div>
+    <p class="footer-contact">Questions? <a href="mailto:hello@tealandtangent.com">hello@tealandtangent.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
