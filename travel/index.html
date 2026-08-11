@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip Planning, On Me — Nirav</title>
+<meta name="description" content="Free trip planning. Same prices you'd pay booking it yourself, plus perks you won't find on your own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #EAF4F6;
+    --sky-deep: #2F8FA8;
+    --coral: #FF7A5C;
+    --sand: #FFC85C;
+    --ink: #1B2A3A;
+    --ink-soft: #4E6070;
+    --paper: #FCFBF8;
+    --line: #D9E6EA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Public Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, var(--sky) 0%, var(--paper) 100%);
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .horizon {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--paper);
+    border-radius: 100% 100% 0 0 / 40px 40px 0 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sky-deep);
+    background: rgba(47, 143, 168, 0.1);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: rise 0.6s ease forwards;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 7vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 11ch;
+    opacity: 0;
+    animation: rise 0.6s ease 0.08s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--sky-deep);
+  }
+
+  .sub {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    opacity: 0;
+    animation: rise 0.6s ease 0.16s forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 32px;
+    background: var(--coral);
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(255, 122, 92, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    opacity: 0;
+    animation: rise 0.6s ease 0.24s forwards;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 122, 92, 0.45);
+  }
+
+  .cta:active { transform: translateY(0); }
+
+  /* OFFER TAGS */
+  .offers {
+    padding: 48px 0 8px;
+  }
+
+  .offers h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .tag-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 480px) {
+    .tag-grid { grid-template-columns: 1fr; }
+  }
+
+  .tag {
+    position: relative;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 18px 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tag::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 4px;
+    border-radius: 4px;
+    background: var(--tag-color, var(--sky-deep));
+  }
+
+  .tag:nth-child(1) { --tag-color: #2F8FA8; }
+  .tag:nth-child(2) { --tag-color: #FF7A5C; }
+  .tag:nth-child(3) { --tag-color: #FFC85C; }
+  .tag:nth-child(4) { --tag-color: #6FAE8E; }
+
+  .tag .label {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .tag .desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* WHY FREE */
+  .why {
+    padding: 48px 0;
+  }
+
+  .why h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .point {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .point .num {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sky-deep);
+    background: var(--sky);
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .point .ptext strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .point .ptext span {
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  /* CLOSING CTA */
+  .closer {
+    background: var(--ink);
+    color: white;
+    padding: 56px 0;
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .closer h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 5vw, 34px);
+    margin-bottom: 12px;
+  }
+
+  .closer p {
+    color: #B9C4CE;
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  .closer .cta {
+    animation: none;
+    opacity: 1;
+    background: var(--sand);
+    color: var(--ink);
+    box-shadow: 0 4px 14px rgba(255, 200, 92, 0.3);
+  }
+
+  .closer .cta:hover {
+    box-shadow: 0 6px 18px rgba(255, 200, 92, 0.4);
+  }
+
+  footer {
+    text-align: center;
+    padding: 28px 24px 40px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  footer .name {
+    font-weight: 700;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">✈ Trip planning, no cost to you</span>
+      <h1>I'll plan your next trip. <em>You just show up.</em></h1>
+      <p class="sub">Same prices you'd pay booking it yourself, plus the upgrades, credits, and perks you won't find on your own.</p>
+      <a class="cta" href="https://secure.foratravel.com/intake/cCdhHjHwFd">Start your trip request →</a>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <section class="offers">
+    <div class="wrap">
+      <h2>What I book</h2>
+      <div class="tag-grid">
+        <div class="tag">
+          <div class="label">Hotels</div>
+          <div class="desc">City stays, boutique picks, the right neighborhood for what you're doing.</div>
+        </div>
+        <div class="tag">
+          <div class="label">Resorts</div>
+          <div class="desc">Room upgrades and property credit, at the rate you'd pay direct.</div>
+        </div>
+        <div class="tag">
+          <div class="label">Cruises</div>
+          <div class="desc">Cabin picks and perks across major lines.</div>
+        </div>
+        <div class="tag">
+          <div class="label">Premium flights</div>
+          <div class="desc">International business and first class, sourced and compared.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <h2>Why it costs you nothing</h2>
+      <div class="points">
+        <div class="point">
+          <div class="num">1</div>
+          <div class="ptext">
+            <strong>Same price as booking direct</strong>
+            <span>No markup, no advisor fee on standard bookings. The rate you see is the rate you pay.</span>
+          </div>
+        </div>
+        <div class="point">
+          <div class="num">2</div>
+          <div class="ptext">
+            <strong>Perks you can't unlock yourself</strong>
+            <span>Room upgrades, resort credit, early check-in, and welcome amenities from preferred partner rates.</span>
+          </div>
+        </div>
+        <div class="point">
+          <div class="num">3</div>
+          <div class="ptext">
+            <strong>I do the comparison shopping</strong>
+            <span>Send me your dates and budget. I'll come back with a short list of real options, not a search page.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2>Got a trip coming up?</h2>
+      <p>Tell me your dates and I'll take it from there.</p>
+      <a class="cta" href="https://secure.foratravel.com/intake/cCdhHjHwFd">Start your trip request →</a>
+    </div>
+  </section>
+
+  <footer>
+    Planned by <span class="name">Nirav</span>, Teal &amp; Tangent Ventures
+  </footer>
+
+</body>
+</html>
