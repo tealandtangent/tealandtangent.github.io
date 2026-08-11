@@ -42,6 +42,49 @@
     padding: 0 24px;
   }
 
+  /* HEADER */
+  header.site {
+    background: var(--ink);
+    padding: 16px 24px;
+  }
+
+  header.site .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0;
+  }
+
+  header.site .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: white;
+    white-space: nowrap;
+  }
+
+  header.site .cta {
+    margin-top: 0;
+    animation: none;
+    opacity: 1;
+    background: var(--sand);
+    color: var(--ink);
+    font-size: 14px;
+    padding: 10px 18px;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+
+  header.site .cta:hover {
+    box-shadow: 0 4px 12px rgba(255, 200, 92, 0.35);
+  }
+
+  @media (max-width: 380px) {
+    header.site .brand { font-size: 15px; }
+    header.site .cta { font-size: 13px; padding: 9px 14px; }
+  }
+
   /* HERO */
   .hero {
     background: linear-gradient(180deg, var(--sky) 0%, var(--paper) 100%);
@@ -288,6 +331,13 @@
 </style>
 </head>
 <body>
+
+  <header class="site">
+    <div class="wrap">
+      <span class="brand">Teal &amp; Tangent Travel</span>
+      <a class="cta" href="https://secure.foratravel.com/intake/cCdhHjHwFd">Start a trip →</a>
+    </div>
+  </header>
 
   <section class="hero">
     <div class="wrap">
