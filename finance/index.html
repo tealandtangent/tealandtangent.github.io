@@ -41,7 +41,13 @@
   /* ---------- Header ---------- */
   header{
     background:var(--parchment);
-    padding:18px 0;
+    padding:26px 0;
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
   }
   .brand{
     display:flex;
@@ -58,11 +64,28 @@
     width:9px;height:9px;border-radius:50%;
     background:#B98A34;
     display:inline-block;
+    flex-shrink:0;
   }
+  .header-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:var(--cream);
+    font-weight:600;
+    font-size:13.5px;
+    padding:10px 18px;
+    border-radius:2px;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background 0.15s ease;
+  }
+  .header-cta:hover{ background:var(--ink-soft); }
+  .header-cta:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
 
   /* ---------- Hero ---------- */
   .hero{
-    padding:64px 0 40px;
+    padding:88px 0 56px;
     border-bottom:1px solid var(--rule);
   }
   .eyebrow{
@@ -119,7 +142,7 @@
 
   /* ---------- Signature: the leak strip ---------- */
   .leak-section{
-    padding:52px 0 56px;
+    padding:72px 0 76px;
     border-bottom:1px solid var(--rule);
   }
   .leak-label{
@@ -201,7 +224,7 @@
 
   /* ---------- Service ---------- */
   .service{
-    padding:56px 0;
+    padding:76px 0;
     border-bottom:1px solid var(--rule);
   }
   h2{
@@ -226,7 +249,7 @@
     display:grid;
     grid-template-columns:36px 1fr;
     gap:16px;
-    padding:20px 0;
+    padding:24px 0;
     border-top:1px solid var(--rule);
   }
   .step:last-child{ border-bottom:1px solid var(--rule); }
@@ -250,13 +273,13 @@
 
   /* ---------- Who it's for ---------- */
   .who{
-    padding:56px 0;
+    padding:76px 0;
     border-bottom:1px solid var(--rule);
   }
   .who-grid{
     display:grid;
-    gap:14px;
-    margin-top:28px;
+    gap:20px;
+    margin-top:32px;
   }
   .who-item{
     display:flex;
@@ -275,7 +298,7 @@
 
   /* ---------- Footer CTA ---------- */
   .footer-cta{
-    padding:64px 0 60px;
+    padding:84px 0 72px;
     text-align:left;
   }
   .footer-cta h2{
@@ -297,8 +320,9 @@
 
   @media (max-width:520px){
     .wrap{ padding:0 20px; }
-    header{ padding:16px 0; }
-    .hero{ padding-top:48px; }
+    header{ padding:18px 0; }
+    .header-cta{ padding:9px 14px; font-size:12.5px; }
+    .hero{ padding-top:56px; }
     .leak-row{ font-size:13px; }
     .leak-row .amt{ font-size:18px; }
   }
@@ -306,8 +330,11 @@
 </head>
 <body>
 
-<header class="wrap">
-  <div class="brand"><span class="mark"></span>Teal &amp; Tangent Finance</div>
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="mark"></span>Teal &amp; Tangent Finance</div>
+    <a class="header-cta" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">Request a call</a>
+  </div>
 </header>
 
 <section class="hero wrap">
