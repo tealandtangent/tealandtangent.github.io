@@ -284,9 +284,10 @@
     border-top:1px solid var(--rule);
   }
   .step{
-    padding:28px 32px 8px 0;
+    padding:28px 34px 8px 34px;
     border-right:1px solid var(--rule);
   }
+  .step:first-child{ padding-left:0; }
   .step:last-child{ border-right:none; padding-right:0; }
   .step-n{
     font-family:'IBM Plex Mono', monospace;
@@ -390,6 +391,8 @@
       border-right:none;
       border-top:1px solid var(--rule);
     }
+    .step:first-child,
+    .step:last-child{ padding-left:0; padding-right:0; }
     .step:last-child{ border-bottom:1px solid var(--rule); }
   }
   @media (max-width:600px){
