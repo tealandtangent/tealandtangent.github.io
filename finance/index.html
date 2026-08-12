@@ -4,418 +4,545 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Teal &amp; Tangent Finance — Know where your profit actually goes</title>
+<meta name="description" content="A focused diagnostic for small business owners: find where margin leaks between revenue and the bottom line, and what to do about it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#16302C;
-    --ink-soft:#1F3E38;
-    --parchment:#EFE9DC;
-    --parchment-dim:#E3DCC9;
-    --cream:#F4F0E4;
-    --amber:#C79A3E;
-    --amber-soft:#DEC077;
-    --sage:#8FA88C;
-    --rule: rgba(244,240,228,0.18);
+    --paper:#F7F4EC;
+    --paper-warm:#F1ECE0;
+    --card:#FCFAF4;
+    --teal:#0E332D;
+    --teal-lift:#164039;
+    --ink:#132E29;
+    --ink-mid:#4A625C;
+    --ink-soft:#748A84;
+    --brass:#A9791F;
+    --brass-lite:#D9B764;
+    --rule:rgba(19,46,41,0.13);
+    --rule-dark:rgba(247,244,236,0.16);
+
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:40px;
+    --sp-5:64px; --sp-6:96px; --sp-7:128px;
   }
+
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+
   body{
     margin:0;
-    background:var(--ink);
-    color:var(--cream);
-    font-family:'Work Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.65;
     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
+
   @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+    *{animation:none !important; transition:none !important;}
   }
 
   .wrap{
-    max-width:760px;
+    width:100%;
+    max-width:1040px;
     margin:0 auto;
-    padding:0 28px;
+    padding:0 32px;
   }
 
-  /* ---------- Header ---------- */
-  header{
-    background:var(--parchment);
-    padding:26px 0;
+  /* ============ Type primitives ============ */
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:500;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
   }
-  header .wrap{
+  .display{
+    font-family:'Newsreader', Georgia, serif;
+    font-weight:300;
+    letter-spacing:-0.018em;
+    line-height:1.06;
+    margin:0;
+  }
+  .display em{
+    font-style:italic;
+    font-weight:300;
+  }
+  .lead{
+    font-size:19px;
+    line-height:1.6;
+    color:var(--ink-mid);
+    max-width:52ch;
+    margin:0;
+  }
+
+  /* ============ Buttons ============ */
+  .btn{
+    display:inline-block;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:0.005em;
+    padding:15px 28px;
+    border-radius:3px;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .btn-brass{
+    background:var(--brass-lite);
+    color:var(--teal);
+    border-color:var(--brass-lite);
+  }
+  .btn-brass:hover{ background:#E6C87C; border-color:#E6C87C; }
+  .btn-dark{
+    background:var(--teal);
+    color:var(--paper);
+    border-color:var(--teal);
+  }
+  .btn-dark:hover{ background:var(--teal-lift); border-color:var(--teal-lift); }
+  .btn-sm{ font-size:13.5px; padding:10px 20px; }
+  .btn:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; }
+
+  /* ============ Header ============ */
+  .site-head{
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    padding:22px 0;
+  }
+  .site-head .wrap{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:20px;
+    gap:24px;
   }
   .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-family:'Work Sans', sans-serif;
-    font-weight:600;
-    font-size:14px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
+    font-family:'Newsreader', Georgia, serif;
+    font-weight:400;
+    font-size:19px;
+    letter-spacing:-0.01em;
     color:var(--ink);
-  }
-  .brand .mark{
-    width:9px;height:9px;border-radius:50%;
-    background:#B98A34;
-    display:inline-block;
-    flex-shrink:0;
-  }
-  .header-cta{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--ink);
-    color:var(--cream);
-    font-weight:600;
-    font-size:13.5px;
-    padding:10px 18px;
-    border-radius:2px;
     text-decoration:none;
     white-space:nowrap;
-    transition:background 0.15s ease;
   }
-  .header-cta:hover{ background:var(--ink-soft); }
-  .header-cta:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
+  .brand .amp{ color:var(--brass); font-style:italic; }
+  .brand .fin{ color:var(--ink-soft); }
 
-  /* ---------- Hero ---------- */
+  /* ============ Hero ============ */
   .hero{
-    padding:88px 0 56px;
-    border-bottom:1px solid var(--rule);
+    background:var(--teal);
+    color:var(--paper);
+    padding:var(--sp-7) 0 var(--sp-6);
   }
-  .eyebrow{
-    font-size:13px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--sage);
-    font-weight:600;
-    margin-bottom:18px;
+  .hero .label{ color:var(--brass-lite); }
+  .hero h1{
+    font-size:clamp(40px, 5.6vw, 66px);
+    color:var(--paper);
+    max-width:15ch;
+    margin:var(--sp-3) 0 0;
   }
-  h1{
-    font-family:'Fraunces', serif;
-    font-optical-sizing:auto;
-    font-weight:500;
-    font-size:clamp(34px, 5.6vw, 54px);
-    line-height:1.08;
-    letter-spacing:-0.01em;
-    margin:0 0 22px;
-    color:var(--cream);
+  .hero h1 em{ color:var(--brass-lite); }
+  .hero .lead{
+    color:rgba(247,244,236,0.72);
+    margin-top:var(--sp-3);
   }
-  h1 em{
-    font-style:italic;
-    color:var(--amber-soft);
-  }
-  .sub{
-    font-size:18px;
-    line-height:1.6;
-    color:rgba(244,240,228,0.78);
-    max-width:52ch;
-    margin:0 0 32px;
-  }
-  .cta{
-    display:inline-flex;
+  .hero-actions{
+    margin-top:var(--sp-4);
+    display:flex;
     align-items:center;
-    gap:10px;
-    background:var(--amber);
-    color:var(--ink);
-    font-weight:600;
-    font-size:15px;
-    padding:14px 24px;
-    border-radius:2px;
-    text-decoration:none;
-    transition:background 0.15s ease, transform 0.15s ease;
+    flex-wrap:wrap;
+    gap:var(--sp-3);
   }
-  .cta:hover{ background:var(--amber-soft); transform:translateY(-1px); }
-  .cta:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; }
-  .cta .arrow{ transition:transform 0.15s ease; }
-  .cta:hover .arrow{ transform:translateX(3px); }
-  .cta-note{
-    margin-top:14px;
-    font-size:13px;
-    color:rgba(244,240,228,0.5);
+  .hero-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:rgba(247,244,236,0.5);
+    letter-spacing:0.01em;
   }
 
-  /* ---------- Signature: the leak strip ---------- */
-  .leak-section{
-    padding:72px 0 76px;
-    border-bottom:1px solid var(--rule);
+  /* ============ Section shell ============ */
+  .band{ padding:var(--sp-6) 0; }
+  .band-warm{ background:var(--paper-warm); }
+  .band h2{
+    font-size:clamp(28px, 3.4vw, 40px);
+    max-width:18ch;
+    margin:var(--sp-2) 0 0;
   }
-  .leak-label{
-    font-size:13px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:rgba(244,240,228,0.45);
-    font-weight:600;
-    margin-bottom:22px;
+  .band .label{ color:var(--brass); }
+  .band-intro{
+    margin-top:var(--sp-2);
+    max-width:48ch;
+    color:var(--ink-mid);
   }
-  .leak-strip{
-    position:relative;
-    background:var(--parchment);
-    border-radius:3px;
-    padding:26px 24px 20px;
-    color:var(--ink);
-    font-family:'Work Sans', sans-serif;
+
+  /* ============ Ledger card (signature) ============ */
+  .ledger{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:36px 36px 30px;
+    margin-top:var(--sp-4);
+    max-width:680px;
+    box-shadow:0 1px 2px rgba(19,46,41,0.04);
   }
-  .leak-row{
+  .ledger-head{
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    font-size:15px;
-    font-weight:500;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--rule);
   }
-  .leak-row .amt{
-    font-family:'Fraunces', serif;
-    font-size:22px;
-    font-weight:500;
+  .ledger-head .label{ color:var(--ink-soft); }
+  .ledger-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:20px 0 14px;
   }
-  .leak-bar{
-    position:relative;
-    height:34px;
-    margin:16px 0 14px;
+  .ledger-top .nm{ font-weight:500; font-size:16px; }
+  .ledger-top .vl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:20px;
+    color:var(--ink);
+  }
+
+  .bar{
+    display:flex;
+    height:38px;
     border-radius:2px;
     overflow:hidden;
-    background:var(--sage);
   }
-  .leak-gap{
-    position:absolute;
-    top:0; bottom:0;
-    background:repeating-linear-gradient(
-      135deg,
-      var(--amber),
-      var(--amber) 6px,
-      #B98A34 6px,
-      #B98A34 12px
+  .seg-keep{ background:var(--teal); }
+  .seg-gap{
+    background-image:repeating-linear-gradient(
+      132deg,
+      var(--brass-lite) 0 5px,
+      var(--brass) 5px 10px
     );
   }
-  .gap1{ left:22%; width:14%; }
-  .gap2{ left:47%; width:10%; }
-  .gap3{ left:68%; width:8%; }
-  .leak-tags{
+
+  .ledger-lines{ padding:22px 0 4px; }
+  .lline{
     display:flex;
-    flex-wrap:wrap;
-    gap:8px 18px;
-    margin-top:6px;
-    font-size:12.5px;
-    color:var(--ink-soft);
+    align-items:baseline;
+    gap:12px;
+    padding:9px 0;
+    font-size:15px;
+    color:var(--ink-mid);
   }
-  .leak-tags span{
-    display:flex;
-    align-items:center;
-    gap:6px;
+  .lline .swatch{
+    width:10px; height:10px; flex:0 0 10px;
+    border-radius:1px;
+    background-image:repeating-linear-gradient(
+      132deg, var(--brass-lite) 0 3px, var(--brass) 3px 6px
+    );
+    transform:translateY(1px);
   }
-  .leak-tags .dot{
-    width:8px;height:8px;border-radius:1px;
-    background:repeating-linear-gradient(135deg, var(--amber), var(--amber) 2px, #B98A34 2px, #B98A34 4px);
-    flex-shrink:0;
+  .lline .dots{
+    flex:1 1 auto;
+    border-bottom:1px dotted rgba(19,46,41,0.3);
+    transform:translateY(-5px);
+    min-width:24px;
   }
-  .leak-foot{
-    margin-top:18px;
-    font-size:14px;
-    color:var(--ink-soft);
-    line-height:1.55;
-    border-top:1px solid rgba(22,48,44,0.12);
-    padding-top:16px;
+  .lline .q{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px;
+    color:var(--brass);
+    flex:0 0 auto;
   }
 
-  /* ---------- Service ---------- */
-  .service{
-    padding:76px 0;
-    border-bottom:1px solid var(--rule);
+  .ledger-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-top:14px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
   }
-  h2{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:28px;
-    margin:0 0 8px;
-    color:var(--cream);
+  .ledger-total .nm{ font-weight:600; font-size:16px; color:var(--ink); }
+  .ledger-total .vl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:22px;
+    color:var(--brass);
   }
-  .service-sub{
+  .ledger-caption{
+    margin:var(--sp-3) 0 0;
     font-size:15px;
-    color:rgba(244,240,228,0.6);
-    margin:0 0 34px;
-    max-width:50ch;
-    line-height:1.55;
+    color:var(--ink-mid);
+    max-width:52ch;
   }
+
+  /* ============ Process ============ */
   .steps{
     display:grid;
+    grid-template-columns:repeat(3, 1fr);
     gap:0;
+    margin-top:var(--sp-5);
+    border-top:1px solid var(--rule);
   }
   .step{
-    display:grid;
-    grid-template-columns:36px 1fr;
-    gap:16px;
-    padding:24px 0;
-    border-top:1px solid var(--rule);
+    padding:28px 32px 8px 0;
+    border-right:1px solid var(--rule);
   }
-  .step:last-child{ border-bottom:1px solid var(--rule); }
-  .step-num{
-    font-family:'Fraunces', serif;
+  .step:last-child{ border-right:none; padding-right:0; }
+  .step-n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--brass);
+    display:block;
+    margin-bottom:14px;
+  }
+  .step h3{
+    font-family:'Newsreader', Georgia, serif;
+    font-weight:400;
+    font-size:21px;
+    line-height:1.25;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .step p{
+    margin:0;
     font-size:15px;
-    color:var(--amber-soft);
-    padding-top:2px;
-  }
-  .step-title{
-    font-weight:600;
-    font-size:16px;
-    margin-bottom:4px;
-    color:var(--cream);
-  }
-  .step-desc{
-    font-size:14.5px;
-    color:rgba(244,240,228,0.62);
-    line-height:1.55;
+    line-height:1.6;
+    color:var(--ink-mid);
   }
 
-  /* ---------- Who it's for ---------- */
-  .who{
-    padding:76px 0;
-    border-bottom:1px solid var(--rule);
+  /* ============ Fit list ============ */
+  .fit-list{
+    margin:var(--sp-4) 0 0;
+    padding:0;
+    list-style:none;
+    max-width:660px;
   }
-  .who-grid{
-    display:grid;
-    gap:20px;
-    margin-top:32px;
-  }
-  .who-item{
+  .fit-list li{
     display:flex;
-    gap:14px;
-    align-items:flex-start;
-    font-size:16px;
+    gap:20px;
+    align-items:baseline;
+    padding:22px 0;
+    border-bottom:1px solid var(--rule);
+    font-size:17px;
     line-height:1.5;
-    color:rgba(244,240,228,0.85);
+    color:var(--ink);
   }
-  .who-item .check{
-    color:var(--sage);
-    font-size:18px;
-    line-height:1.4;
-    flex-shrink:0;
+  .fit-list li:first-child{ border-top:1px solid var(--rule); }
+  .fit-list .rule{
+    flex:0 0 22px;
+    height:1px;
+    background:var(--brass);
+    transform:translateY(-6px);
   }
 
-  /* ---------- Footer CTA ---------- */
-  .footer-cta{
-    padding:84px 0 72px;
-    text-align:left;
+  /* ============ Close ============ */
+  .close{
+    background:var(--teal);
+    color:var(--paper);
+    padding:var(--sp-6) 0;
   }
-  .footer-cta h2{
-    max-width:16ch;
-    margin-bottom:16px;
+  .close h2{
+    font-size:clamp(30px, 3.8vw, 44px);
+    color:var(--paper);
+    max-width:14ch;
+    margin:0;
   }
-  .footer-cta .sub{ margin-bottom:30px; }
-  footer .fine{
-    margin-top:40px;
-    padding-top:24px;
-    border-top:1px solid var(--rule);
+  .close .lead{
+    color:rgba(247,244,236,0.72);
+    margin-top:var(--sp-3);
+  }
+  .close-actions{
+    margin-top:var(--sp-4);
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:var(--sp-3);
+  }
+  .close-note{
+    font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
-    color:rgba(244,240,228,0.4);
+    color:rgba(247,244,236,0.5);
+  }
+
+  /* ============ Footer ============ */
+  .site-foot{
+    background:var(--teal);
+    color:rgba(247,244,236,0.5);
+    padding:0 0 var(--sp-4);
+  }
+  .site-foot .wrap{
+    border-top:1px solid var(--rule-dark);
+    padding-top:24px;
     display:flex;
     justify-content:space-between;
     flex-wrap:wrap;
-    gap:8px;
+    gap:10px;
   }
+  .site-foot a{ color:rgba(247,244,236,0.72); text-decoration:none; }
+  .site-foot a:hover{ color:var(--brass-lite); }
 
-  @media (max-width:520px){
-    .wrap{ padding:0 20px; }
-    header{ padding:18px 0; }
-    .header-cta{ padding:9px 14px; font-size:12.5px; }
-    .hero{ padding-top:56px; }
-    .leak-row{ font-size:13px; }
-    .leak-row .amt{ font-size:18px; }
+  /* ============ Responsive ============ */
+  @media (max-width:860px){
+    .steps{ grid-template-columns:1fr; border-top:none; }
+    .step{
+      padding:24px 0;
+      border-right:none;
+      border-top:1px solid var(--rule);
+    }
+    .step:last-child{ border-bottom:1px solid var(--rule); }
+  }
+  @media (max-width:600px){
+    body{ font-size:15.5px; }
+    .wrap{ padding:0 22px; }
+    .hero{ padding:var(--sp-5) 0 var(--sp-5); }
+    .band{ padding:var(--sp-5) 0; }
+    .close{ padding:var(--sp-5) 0; }
+    .hero h1{ max-width:100%; }
+    .lead{ font-size:17px; }
+    .ledger{ padding:24px 22px 22px; }
+    .ledger-top .vl{ font-size:18px; }
+    .lline{ font-size:14px; }
+    .brand{ font-size:17px; }
+    .btn{ width:100%; text-align:center; }
+    .btn-sm{ width:auto; }
+    .hero-actions, .close-actions{ gap:var(--sp-2); }
   }
 </style>
 </head>
 <body>
 
-<header>
+<header class="site-head">
   <div class="wrap">
-    <div class="brand"><span class="mark"></span>Teal &amp; Tangent Finance</div>
-    <a class="header-cta" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">Request a call</a>
+    <a class="brand" href="#">Teal <span class="amp">&amp;</span> Tangent <span class="fin">Finance</span></a>
+    <a class="btn btn-dark btn-sm" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">Request a call</a>
   </div>
 </header>
 
-<section class="hero wrap">
-  <div class="eyebrow">Financial clarity for small business owners</div>
-  <h1>Your sales look fine.<br>Know where the <em>profit</em> actually goes.</h1>
-  <p class="sub">A straight-talking look at your business's numbers, where margin is quietly leaking between revenue and the bottom line, and what to do about it.</p>
-  <a class="cta" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">
-    Request a free discovery call <span class="arrow">→</span>
-  </a>
-  <div class="cta-note">30–45 minutes, no obligation. Email hello@tealandtangent.com to get started.</div>
-</section>
-
-<section class="leak-section wrap">
-  <div class="leak-label">Where margin usually hides</div>
-  <div class="leak-strip">
-    <div class="leak-row"><span>Revenue in</span><span class="amt">100%</span></div>
-    <div class="leak-bar">
-      <div class="leak-gap gap1"></div>
-      <div class="leak-gap gap2"></div>
-      <div class="leak-gap gap3"></div>
-    </div>
-    <div class="leak-row"><span>Profit that should reach you</span><span class="amt">?</span></div>
-    <div class="leak-tags">
-      <span><span class="dot"></span>Costs sitting unrecorded</span>
-      <span><span class="dot"></span>Pricing that hasn't kept up</span>
-      <span><span class="dot"></span>Blind spots in day-to-day numbers</span>
-    </div>
-    <div class="leak-foot">Every business has a version of this gap. The diagnostic finds yours and puts a number on it.</div>
-  </div>
-</section>
-
-<section class="service wrap">
-  <h2>The Profit Leakage Diagnostic</h2>
-  <p class="service-sub">A focused, one-time analysis built for owners who are too busy running the business to also audit it.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div>
-        <div class="step-title">Discovery call</div>
-        <div class="step-desc">A free 30–45 minute conversation to understand your pricing, staffing, seasonality, and what's felt off.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div>
-        <div class="step-title">We go through your numbers</div>
-        <div class="step-desc">A close read of your financials to find where revenue isn't turning into profit, and why.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div>
-        <div class="step-title">A report you can act on</div>
-        <div class="step-desc">Clear findings and a short list of concrete, prioritized recommendations, nothing you have to decode.</div>
-      </div>
+<section class="hero">
+  <div class="wrap">
+    <p class="label">For small business owners</p>
+    <h1 class="display">Your sales look fine. So where's the <em>profit</em>?</h1>
+    <p class="lead">A straight look at your numbers: where margin leaks out between revenue and the bottom line, and what to do about it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-brass" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">Request a free discovery call</a>
+      <span class="hero-note">30–45 min · No obligation</span>
     </div>
   </div>
 </section>
 
-<section class="who wrap">
-  <h2>This is for you if</h2>
-  <div class="who-grid">
-    <div class="who-item"><span class="check">✓</span>Sales are healthy but the bank account never quite reflects it</div>
-    <div class="who-item"><span class="check">✓</span>You've never seen a clean, trustworthy profit and loss statement</div>
-    <div class="who-item"><span class="check">✓</span>You want a straight answer, not a bookkeeping retainer</div>
+<section class="band">
+  <div class="wrap">
+    <p class="label">Where margin hides</p>
+    <h2 class="display">The gaps rarely show up on the P&amp;L.</h2>
+
+    <div class="ledger">
+      <div class="ledger-head">
+        <span class="label">Statement of where it went</span>
+        <span class="label">Amount</span>
+      </div>
+
+      <div class="ledger-top">
+        <span class="nm">Revenue in</span>
+        <span class="vl">100%</span>
+      </div>
+
+      <div class="bar" role="img" aria-label="A revenue bar interrupted by three gaps representing margin leaks">
+        <span class="seg-keep" style="flex:0 0 20%"></span>
+        <span class="seg-gap"  style="flex:0 0 13%"></span>
+        <span class="seg-keep" style="flex:0 0 20%"></span>
+        <span class="seg-gap"  style="flex:0 0 9%"></span>
+        <span class="seg-keep" style="flex:0 0 16%"></span>
+        <span class="seg-gap"  style="flex:0 0 7%"></span>
+        <span class="seg-keep" style="flex:1 1 auto"></span>
+      </div>
+
+      <div class="ledger-lines">
+        <div class="lline">
+          <span class="swatch"></span>
+          <span>Costs sitting unrecorded</span>
+          <span class="dots"></span>
+          <span class="q">?</span>
+        </div>
+        <div class="lline">
+          <span class="swatch"></span>
+          <span>Pricing that hasn't kept up</span>
+          <span class="dots"></span>
+          <span class="q">?</span>
+        </div>
+        <div class="lline">
+          <span class="swatch"></span>
+          <span>Blind spots in day-to-day numbers</span>
+          <span class="dots"></span>
+          <span class="q">?</span>
+        </div>
+      </div>
+
+      <div class="ledger-total">
+        <span class="nm">What actually reaches you</span>
+        <span class="vl">?</span>
+      </div>
+    </div>
+
+    <p class="ledger-caption">Every business has a version of this. The diagnostic replaces the question marks with real numbers.</p>
   </div>
 </section>
 
-<section class="footer-cta wrap">
-  <h2>Let's find out where it's going.</h2>
-  <p class="sub">Email hello@tealandtangent.com to set up a free discovery call. No pressure, no obligation, just a clearer picture of your numbers.</p>
-  <a class="cta" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">
-    Request a free discovery call <span class="arrow">→</span>
-  </a>
-  <footer>
-    <div class="fine">
-      <span>Teal &amp; Tangent Finance</span>
-      <span>hello@tealandtangent.com</span>
+<section class="band band-warm">
+  <div class="wrap">
+    <p class="label">The Profit Leakage Diagnostic</p>
+    <h2 class="display">One analysis. Three steps.</h2>
+    <p class="band-intro">Built for owners who are too busy running the business to also audit it.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h3>Discovery call</h3>
+        <p>A free conversation about your pricing, staffing, seasonality, and whatever has felt off.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h3>We go through your numbers</h3>
+        <p>A close read of your financials to find where revenue stops turning into profit, and why.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h3>A report you can act on</h3>
+        <p>Clear findings and a short list of prioritized recommendations. Nothing you have to decode.</p>
+      </div>
     </div>
-  </footer>
+  </div>
 </section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="label">Right fit</p>
+    <h2 class="display">This is for you if</h2>
+    <ul class="fit-list">
+      <li><span class="rule"></span>Sales are healthy, but the bank account never quite reflects it.</li>
+      <li><span class="rule"></span>You have never seen a clean profit and loss statement you actually trust.</li>
+      <li><span class="rule"></span>You want a straight answer, not a bookkeeping retainer.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <h2 class="display">Let's find out where it's going.</h2>
+    <p class="lead">Email <a href="mailto:hello@tealandtangent.com" style="color:var(--brass-lite);text-decoration:none;">hello@tealandtangent.com</a> to set up a free discovery call. No pressure, just a clearer picture of your numbers.</p>
+    <div class="close-actions">
+      <a class="btn btn-brass" href="mailto:hello@tealandtangent.com?subject=Discovery%20call%20request">Request a free discovery call</a>
+      <span class="close-note">Typically a reply within one business day</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Teal &amp; Tangent Finance</span>
+    <a href="mailto:hello@tealandtangent.com">hello@tealandtangent.com</a>
+  </div>
+</footer>
 
 </body>
 </html>
