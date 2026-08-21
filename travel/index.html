@@ -56,6 +56,18 @@
     padding: 0;
   }
 
+  header.site .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  header.site .brand-logo {
+    height: 24px;
+    width: auto;
+    display: block;
+  }
+
   header.site .brand {
     font-family: 'Fraunces', serif;
     font-weight: 600;
@@ -356,7 +368,10 @@
 
   <header class="site">
     <div class="wrap">
-      <span class="brand">Teal &amp; Tangent Travel</span>
+      <div class="brand-group">
+        <img class="brand-logo" src="assets/teal-tangent-logo.png" alt="Teal & Tangent Ventures logo">
+        <span class="brand">Teal &amp; Tangent Travel</span>
+      </div>
       <a class="cta" href="https://secure.foratravel.com/intake/cCdhHjHwFd" target="_blank" rel="noopener">Start a trip →</a>
     </div>
   </header>
